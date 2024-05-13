@@ -5,6 +5,10 @@ on:
     inputs:
         target_env:
             type: environment
+            options:
+                - dev
+                - uat
+                - prd
             description: Select the environment
         action:
             type: choice
