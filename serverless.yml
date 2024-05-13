@@ -1,0 +1,38 @@
+service: c5-delfrinando-i
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  deploymentBucket:
+    name: cohort5.deployment
+
+functions:
+  firstfunction:
+    handler: index.firsthandler
+    events:
+      - httpApi:
+          path: /delfrinando
+          method: get
+
+  secondfunction:
+    handler: index.secondhandler
+    events:
+      - httpApi:
+          path: /pranata
+          method: post
+      - sqs:
+          arn:
+            Fn::GetAtt:
+              - PranataQueue
+              - Arn
+	
+resources:
+  Resources:
+    PranataQueue:
+      Type: "AWS::SQS::Queue"
+      Properties:
+        QueueName: "pranata-queue"
+
+plugins:
+  - serverless-offline
