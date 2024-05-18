@@ -25,7 +25,7 @@ resource "aws_ecs_task_definition" "own_task_definition" {
     # image_url        = "${var.ecr_url}/${var.ecr_image_name}:latest"
 
     # use spring image
-    image_url        = springcommunity/spring-framework-petclinic
+    image_url        = "github.com/spring-petclinic/spring-framework-petclinic:latest"
     port_name        = var.ecs_port_name
     container_name   = var.ecs_container_name
     log_group_region = "us-east-1"
