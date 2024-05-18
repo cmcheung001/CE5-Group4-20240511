@@ -22,7 +22,10 @@ resource "aws_ecs_task_definition" "own_task_definition" {
 
   # For nginx image
   container_definitions = templatefile("./files/ecr-task-definition.json", {
-    image_url        = "${var.ecr_url}/${var.ecr_image_name}:latest"
+    # image_url        = "${var.ecr_url}/${var.ecr_image_name}:latest"
+
+    # use spring image
+    image_url        = springcommunity/spring-framework-petclinic
     port_name        = var.ecs_port_name
     container_name   = var.ecs_container_name
     log_group_region = "us-east-1"
